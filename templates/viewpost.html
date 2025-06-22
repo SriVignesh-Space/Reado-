@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
+    <a href="{% url 'index' %}" class="d-flex justify-content-lg-start text-decoration-none"><button class="btn btn-secondary"><</button></a>
+    <div class="my-3 py-3">
+      <p class="display-1 fw-bold">{{post.title}}</p> 
+    </div>
+    <div class="bg-body shadow-sm mx-auto" style="width: 80%;  border-radius: 21px 21px 0 0;">
+        <p class="display-6">{{post.content}}</p>
+        <img src="{{post.image.url}}" alt="image">
+    </div>
+  </div>
+{% endblock content %}

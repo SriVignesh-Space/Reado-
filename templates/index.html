@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block category %}
+{% for category in categories %}
+<li><a href="#" class="nav-link px-2 link-dark">{{category.category}}</a></li>
+
+{% endfor %}
+{% endblock category %}
+
+{% block content %}
+     <!-- Hero -->
+            <div class="row">
+
+              <div class="col-lg-8 my-4">
+              {% for post in posts %}
+               <div class="shadow border mb-3 p-5 rounded-3">
+                  <div class="row">
+                      <div class="p-2">
+                        <img src="{{post.author.profile.image.url}}" alt="img" width="50" height="50" class="rounded-circle">
+                        <span class="ms-2">{{post.author}}</span>
+                        <small class="text-muted">{{post.date | date:"d F,Y"}}</small>
+                      </div>
+                    <hr>
+                    <div class="col-md-6">
+                      <h1 class="display-5 fw-bold">{{post.title}}</h1>
+                      <p class="lead mb-4">{{post.content | truncatechars:160}}</p>
+                      <a href="{% url 'viewpost' post.id %}"><div class="d-grid gap-2 d-sm-flex  justify-content-sm-center">
+                        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">View</button>
+                      </div></a>
+                    </div>
+                    <div class="col-md-6">
+                      <img src="{{post.image.url}}" alt="img" height="350" width="350">
+                    </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="col-lg-4 position-sticky">
+                <h3 class="px-4">Recents</h3>
+                <div class="d-flex flex-column flex-md-row p-4 gap-2 align-items-center justify-content-center">
+                  <div class="list-group">
+                    {% for recent in recent %}
+                    <a href="{% url 'viewpost' recent.id %}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">{{recent.title}}</h6>
+                          <p class="mb-0 opacity-75">{{recent.content | truncatechars:80}}</p>
+                        </div>
+                        <small class="opacity-50 text-nowrap">now</small>
+                      </div>
+                    </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+{% endblock content%}
+
